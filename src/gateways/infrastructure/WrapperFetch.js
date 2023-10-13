@@ -12,19 +12,19 @@ function get(url, headers) {
     return fetch(url, requestOptions).then(handleResponse);
 }
 
-function post(url, body) {
+function post(url, body, headers) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
 
-function put(url, body) {
+function put(url, body, headers) {
     const requestOptions = {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     };
     return fetch(url, requestOptions).then(handleResponse);    

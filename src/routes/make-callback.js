@@ -29,7 +29,7 @@ export default (controller) => async (req, res) => {
                     success: false,
                     code: 500,
                     error: {
-                        description: e
+                        description: e.error.description
                     }
                });
             }
