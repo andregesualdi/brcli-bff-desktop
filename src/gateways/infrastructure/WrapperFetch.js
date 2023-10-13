@@ -4,9 +4,10 @@ export const fetchWrapper = {
     put
 };
 
-function get(url) {
+function get(url, headers) {
     const requestOptions = {
-        method: 'GET'
+        method: 'GET',
+        headers: headers
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
@@ -34,7 +35,7 @@ function handleResponse(response) {
         const data = text && JSON.parse(text);
         
         if (!response.ok) {
-            const error = (data && data.message) || response.statusText;
+            const error = data;
             return Promise.reject(error);
         }
 

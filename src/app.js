@@ -1,5 +1,6 @@
 import express from "express";
 import Configuration, { configEnvironments } from "./config.js";
+import routes from "./routes/index.js";
 
 const app = express();
 configEnvironments();
