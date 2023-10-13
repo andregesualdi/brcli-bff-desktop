@@ -24,7 +24,7 @@ export function configEnvironments() {
     Configuration.urlListar = process.env.URL_LISTAR_PACIENTES;
     Configuration.urlPaciente = process.env.URL_PACIENTE;
     Configuration.urlCodigo = process.env.URL_CODIGO_ACESSO;
-    Configuration.urlPlano = process.env.URL_PLANO_ALIMENTA;
+    Configuration.urlPlano = process.env.URL_PLANO_ALIMENTAR;
 }
 
 export default Configuration;
