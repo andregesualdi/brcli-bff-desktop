@@ -25,6 +25,7 @@ export default (controller) => async (req, res) => {
                     status: 404
                 });
             } else {
+                console.log(e);
                 res.status(500).send({
                     success: false,
                     code: 500,
