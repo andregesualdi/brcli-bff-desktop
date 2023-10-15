@@ -53,7 +53,7 @@ export default function makePacientesGateway() {
     }
 
     async function salvarPaciente(idPaciente, idNutricionista, paciente) {
-        const headers = {
+        let headers = {
             'codigo-usuario': idNutricionista
         };
         if (idPaciente) {

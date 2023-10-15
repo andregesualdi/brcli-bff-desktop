@@ -7,7 +7,9 @@ export default function makeGetAgenda(gateway) {
             let agenda = response.map((el) => {
                 return Agenda.mapToAgenda(el);
             });
-            return agenda;
+            return {
+                agendamentos: agenda
+            }
         }
         return undefined;
     }

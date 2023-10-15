@@ -36,13 +36,14 @@ class Paciente {
 
     static mapPacienteToRequest(paciente) {
         return {
-            codigoAcesso: paciente.codigoAcesso,
+            codigoPaciente: paciente.codigoPaciente ? paciente.codigoPaciente : undefined,
+            codigoAcesso: paciente.codigoAcesso ? paciente.codigoAcesso : undefined,
             altura: paciente.altura,
             dataNascimento: paciente.dataNascimento,
             peso: paciente.peso,
             nome: paciente.nome,
-            nomeAcesso: paciente.nomeAcesso,
-            imagem: paciente.imagem,
+            nomeAcesso: paciente.nomeAcesso ? paciente.nomeAcesso : undefined,
+            imagem: paciente.imagem ? paciente.imagem : undefined,
             email: paciente.email,
             telefone: paciente.telefone
         }
@@ -53,12 +54,19 @@ class Paciente {
         const data = res.dataNascimento.split("-");
         const idade = calcularIdade(Number(data[1]), Number(data[2]), Number(data[0]));
         let dataCadastro = res.dataCadastro.split("T");
-        dataCadastro = moment(dataCadastro[0], "Y-M-D").format('MMMM [de] YYYY')
-        let agendamento = Agendamento.mapToAgendamento({
-            data: res.dataAgendamento,
-            hora: res.horaAgendamento
-        })
-        return new Paciente(res.id, res.imagem, res.nome, dataCadastro, agendamento, res.telefone, res.email, res.dataNascimento, res.altura, res.peso, imc, res.nomeAcesso, res.codigoAcesso, idade);
+        dataCadastro = moment(dataCadastro[0], "Y-M-D").format('MMMM [de] YYYY');
+        let agendamento = undefined;
+        if (res.horaAgendamento && res.dataAgendamento) {
+            agendamento = Agendamento.mapToAgendamento({
+                data: res.dataAgendamento,
+                hora: res.horaAgendamento
+            });
+        }
+        let nomeAcesso = undefined;
+        if (res.nomeAcesso && res.nomeAcesso !== 'null' && res.nomeAcesso !== 'undefined' && res.nomeAcesso !== '') {
+            nomeAcesso = res.nomeAcesso;
+        }
+        return new Paciente(res.id, res.imagem, res.nome, dataCadastro, agendamento, res.telefone, res.email, res.dataNascimento, res.altura, res.peso, imc, nomeAcesso, res.codigoAcesso, idade);
     }
 }
 
